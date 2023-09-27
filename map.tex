@@ -1,0 +1,30 @@
+\documentclass[]{standalone}
+
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{luacode}
+
+\begin{document}
+\begin{luacode}
+
+tex.sprint("\\begin{tikzpicture}[x = 1px, y = 1px, line width = 2pt]")
+tex.sprint("\\draw (0,0) rectangle (1280, 1280);")
+tex.sprint("\\draw (0,256)--(1280, 256);")
+tex.sprint("\\draw (0,1024)--(1280, 1024);")
+tex.sprint("\\draw (1024, 1280)--(1024, 0);")
+tex.sprint("\\draw (256,0)--(256, 1280);")
+
+for i = 1, 5 do
+tex.sprint("\\draw (0, ".. 256 + i * 128 ..")--(256,".. 256 + i * 128 ..");")
+tex.sprint("\\draw (1024, ".. 256 + i * 128 ..")--(1280,".. 256 + i * 128 ..");")
+end
+
+for i = 1, 5 do
+tex.sprint("\\draw (".. 256 + i * 128 ..", 0)--(".. 256 + i * 128 ..", 256);")
+tex.sprint("\\draw (".. 256 + i * 128 ..", 1024)--(".. 256 + i * 128 ..", 1280);")
+end
+
+tex.sprint("\\end{tikzpicture}")
+
+\end{luacode}
+\end{document}
