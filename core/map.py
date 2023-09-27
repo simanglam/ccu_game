@@ -7,21 +7,21 @@ class map:
         self.old_map = self.map.copy()
 
         self.width, self.height = self.map.get_size()
-
+        print(self.width, self.height)
         self.chunk = {}
 
         self.current_team = 0
 
         self.player = pygame.sprite.Group()
-        team1 = charater(0, (100, 100, 255))
-        team2 = charater(1, (100, 100, 255))
-        team3 = charater(2, (100, 100, 255))
+        team1 = charater(0, (0, 0, 255))
+        team2 = charater(1, (255, 0, 0))
+        team3 = charater(2, (0, 255, 0))
 
         self.player.add(team1)
         self.player.add(team2)
         self.player.add(team3)
 
-        for i in range(0, 20):
+        for i in range(0, 28):
             self.chunk[i] = 0
         self.chunk[0] = 3
 

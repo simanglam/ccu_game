@@ -10,8 +10,9 @@ pygame.init()
 
 clock = pygame.time.Clock()
 
-screen = pygame.display.set_mode((2400, 2400), FULLSCREEN)
+screen = pygame.display.set_mode((1920, 1080), FULLSCREEN)
 width, height = screen.get_size()
+print(width, height)
 
 bg = pygame.Surface(screen.get_size())
 bg.fill((255,255,255))
@@ -42,9 +43,6 @@ while running:
                     running = False
 
         pygame.display.update()
-
-
-
         clock.tick(30)
 
 pygame.quit()
