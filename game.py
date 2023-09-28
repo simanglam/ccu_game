@@ -43,6 +43,7 @@ while running:
                     running = False
 
         pygame.display.update()
+
         clock.tick(30)
 
 pygame.quit()
