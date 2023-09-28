@@ -10,7 +10,7 @@ class charater(pygame.sprite.Sprite):
         self.image = pygame.Surface((self.width, self.height), pygame.SRCALPHA, 32)
         self.image = self.image.convert_alpha()
         self.color = color
-        self.image.fill((255, 255, 255, 0))
+        self.image.fill(self.color)
         self.x, self.y = 860, 860
         self.index = 0
         self.seq = seq
