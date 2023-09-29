@@ -11,7 +11,7 @@ class charater(pygame.sprite.Sprite):
         self.image = self.image.convert_alpha()
         self.r, self.g, self.b = color
         self.alpha = 255
-        self.alpha_change = -12.5
+        self.alpha_change = -20
         self.image.fill((255, 255, 255, 0))
         self.x, self.y = 860, 860
         self.index = 0
@@ -26,8 +26,9 @@ class charater(pygame.sprite.Sprite):
     def update(self, *args: Any, **kwargs: Any) -> None:
         if self.animate:
             self.step = kwargs["step"]
-        self.animate = False
-        self.do_animate(kwargs["map"])
+            self.animate = False
+        if self.step > 0:
+            self.do_animate(kwargs["map"])
 
     def do_animate(self, map):
         if self.step <= 0:

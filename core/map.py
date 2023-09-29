@@ -38,6 +38,12 @@ class map:
         else:
             return self.chunk[index]
 
+    def get_current_team(self) -> charater:
+        return self.player.sprites()[self.current_team]
+    
+    def change_current_team(self, new_team_index: int):
+        self.current_team = new_team_index
+
     def update(self, step = 0):
         self.map.blit(self.old_map, (0, 0))
         self.player.update(step = 0, map = self.chunk)
@@ -47,7 +53,6 @@ class map:
                 self.map.blit(i.image, (i.x + 20 * i.seq - 1, i.y))
             else:
                 self.map.blit(i.image, (i.x, i.y))
-
 
         if step > 0:
             self.player.sprites()[self.current_team].animate = True
