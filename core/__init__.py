@@ -25,7 +25,7 @@ class game:
         while self.running:
             self.screen.blit(self.bg, (0, 0))
             self.game_map.update()
-            self.monitor.update(self.game_map.get_current_team())
+            self.monitor.update(self.game_map.get_players())
             self.screen.blit(self.game_map.map, ((self.width - self.game_map.width) / 2, (self.height - self.game_map.height) / 2))
             self.screen.blit(self.monitor.screen, (0, 0))
             
