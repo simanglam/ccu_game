@@ -16,17 +16,15 @@ class charater(pygame.sprite.Sprite):
         self.x, self.y = 860, 860
         self.index = 0
         self.seq = seq
-        self.animate = False
-        self.in_aimate = False
-        self.step = 0
+        self.step: int = 0
         
         pygame.draw.circle(self.image, (self.r, self.g, self.b, self.alpha), (self.width / 2, self.height / 2), self.radius)
         super().__init__()
 
+    def set_step(self, step: int) -> None:
+        self.step = step
+
     def update(self, *args: Any, **kwargs: Any) -> None:
-        if self.animate:
-            self.step = kwargs["step"]
-            self.animate = False
         if self.step > 0:
             self.do_animate(kwargs["map"])
 

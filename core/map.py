@@ -41,22 +41,28 @@ class map:
     def get_current_team(self) -> charater:
         return self.player.sprites()[self.current_team]
     
+    def get_players(self) -> pygame.sprite.Group:
+        return self.player
+    
     def change_current_team(self, new_team_index: int):
         self.current_team = new_team_index
 
     def update(self, step = 0):
         self.map.blit(self.old_map, (0, 0))
-        self.player.update(step = 0, map = self.chunk)
+        self.player.update(map = self.chunk)
 
-        for i in self.player.sprites():
-            if self.chunk[i.index] > 1:
-                self.map.blit(i.image, (i.x + 20 * i.seq - 1, i.y))
-            else:
-                self.map.blit(i.image, (i.x, i.y))
+        for i in range(0, len(self.player.sprites())):
+            shift = 0
+            for x in range(i, len(self.player.sprites())):
+                if self.player.sprites()[i] != self.player.sprites()[x]:
+                    if self.player.sprites()[i].index == self.player.sprites()[x].index:
+                        if self.player.sprites()[i].seq < self.player.sprites()[x].seq:
+                            shift += 1
+        
+            self.map.blit(self.player.sprites()[i].image, (self.player.sprites()[i].x + (20 * shift), self.player.sprites()[i].y))
 
         if step > 0:
-            self.player.sprites()[self.current_team].animate = True
-            self.player.sprites()[self.current_team].update(step = step, map = self.chunk)
+            self.player.sprites()[self.current_team].set_step(step)
             
             self.current_team += 1
             if self.current_team >= 3:
