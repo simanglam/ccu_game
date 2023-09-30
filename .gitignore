@@ -4,3 +4,5 @@ map.png-1.png
 map.fdb_latexmk
 map.fls
 .DS_Store
+build/*
+build

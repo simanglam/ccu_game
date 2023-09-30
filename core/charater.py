@@ -5,21 +5,21 @@ from typing import Any
 class charater(pygame.sprite.Sprite):
 
     def __init__(self, seq, color: tuple[int, int, int]) -> None:
+        super().__init__()
         self.width, self.height = 50 ,50
         self.radius = 10
-        self.image = pygame.Surface((self.width, self.height), pygame.SRCALPHA, 32)
-        self.image = self.image.convert_alpha()
+        self.screen = pygame.Surface((self.width, self.height), pygame.SRCALPHA, 32)
+        self.screen = self.screen.convert_alpha()
         self.r, self.g, self.b = color
         self.alpha = 255
         self.alpha_change = -20
-        self.image.fill((255, 255, 255, 0))
+        self.screen.fill((255, 255, 255, 0))
         self.x, self.y = 860, 860
         self.index = 0
         self.seq = seq
         self.step: int = 0
         
-        pygame.draw.circle(self.image, (self.r, self.g, self.b, self.alpha), (self.width / 2, self.height / 2), self.radius)
-        super().__init__()
+        pygame.draw.circle(self.screen, (self.r, self.g, self.b, self.alpha), (self.width / 2, self.height / 2), self.radius)
 
     def set_step(self, step: int) -> None:
         self.step = step
@@ -38,14 +38,14 @@ class charater(pygame.sprite.Sprite):
                 self.alpha_change = -self.alpha_change
                 self.move(map)
 
-            self.image.fill((255, 255, 255, 0))
-            pygame.draw.circle(self.image, (self.r, self.g, self.b, self.alpha), (self.width / 2, self.height / 2), self.radius)
+            self.screen.fill((255, 255, 255, 0))
+            pygame.draw.circle(self.screen, (self.r, self.g, self.b, self.alpha), (self.width / 2, self.height / 2), self.radius)
 
         else:
             self.alpha = 255
             self.alpha_change = -self.alpha_change
-            self.image.fill((255, 255, 255, 0))
-            pygame.draw.circle(self.image, (self.r, self.g, self.b, self.alpha), (self.width / 2, self.height / 2), self.radius) 
+            self.screen.fill((255, 255, 255, 0))
+            pygame.draw.circle(self.screen, (self.r, self.g, self.b, self.alpha), (self.width / 2, self.height / 2), self.radius) 
             self.step -= 1
             return self.do_animate(self.step)
 

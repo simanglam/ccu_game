@@ -68,5 +68,4 @@ class map:
                     if self.player.sprites()[i].index == self.player.sprites()[x].index:
                         if self.player.sprites()[i].seq < self.player.sprites()[x].seq:
                             shift += 1
-        
-            self.map.blit(self.player.sprites()[i].image, (self.player.sprites()[i].x + (20 * shift), self.player.sprites()[i].y))
+            self.map.blit(self.player.sprites()[i].screen, (self.player.sprites()[i].x + (20 * shift), self.player.sprites()[i].y))

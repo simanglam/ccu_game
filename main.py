@@ -12,5 +12,3 @@ pygame.init()
 main_game = game()
 
 asyncio.run(main_game.run())
-
-pygame.quit()
