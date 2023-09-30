@@ -45,25 +45,41 @@ class game:
                     if event.mod & pygame.KMOD_SHIFT:
                         if event.key == pygame.K_0:
                             self.game_map.change_current_team(0)
+
                         if event.key == pygame.K_1:
                             self.game_map.change_current_team(1)
+
                         if event.key == pygame.K_2:
                             self.game_map.change_current_team(2)
+
                         if event.key == pygame.K_3:
                             self.game_map.change_current_team(3)
+
                         if event.key == pygame.K_4:
                             self.game_map.change_current_team(4)
+                            
                     else:
                         if event.key == pygame.K_1:
                             self.game_map.update(step = 1)
+
                         if event.key == pygame.K_2:
                             self.game_map.update(step = 2)
+
                         if event.key == pygame.K_3:
                             self.game_map.update(step = 3)
+
                         if event.key == pygame.K_4:
                             self.game_map.update(step = 4)
+
+                        if event.key == pygame.K_5:
+                            self.game_map.update(step = 5)
+
+                        if event.key == pygame.K_6:
+                            self.game_map.update(step = 6)
+
                         if event.key == pygame.K_ESCAPE:
                             self.running = False
+
                         if event.key == pygame.K_r:
                             self.reload()
 
