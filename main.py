@@ -1,5 +1,6 @@
 from typing import Any
 import pygame
+import asyncio
 
 from pygame import Rect, draw
 from pygame.locals import *
@@ -10,6 +11,6 @@ pygame.init()
 
 main_game = game()
 
-main_game.run()
+asyncio.run(main_game.run())
 
 pygame.quit()
