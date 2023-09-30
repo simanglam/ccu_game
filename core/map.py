@@ -3,7 +3,7 @@ from core.charater import charater
 
 class map:
     def __init__(self) -> None:
-        self.map = pygame.image.load("map2.png")
+        self.map = pygame.image.load("map.png")
         self.old_map = self.map.copy()
 
         self.width, self.height = self.map.get_size()
@@ -48,6 +48,16 @@ class map:
         self.current_team = new_team_index
 
     def update(self, step = 0):
+        self.render()
+
+        if step > 0:
+            self.player.sprites()[self.current_team].set_step(step)
+            
+            self.current_team += 1
+            if self.current_team >= 3:
+                self.current_team = 0
+
+    def render(self):
         self.map.blit(self.old_map, (0, 0))
         self.player.update(map = self.chunk)
 
@@ -60,10 +70,3 @@ class map:
                             shift += 1
         
             self.map.blit(self.player.sprites()[i].image, (self.player.sprites()[i].x + (20 * shift), self.player.sprites()[i].y))
-
-        if step > 0:
-            self.player.sprites()[self.current_team].set_step(step)
-            
-            self.current_team += 1
-            if self.current_team >= 3:
-                self.current_team = 0
