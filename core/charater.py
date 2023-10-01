@@ -21,12 +21,25 @@ class charater(pygame.sprite.Sprite):
         
         pygame.draw.circle(self.screen, (self.r, self.g, self.b, self.alpha), (self.width / 2, self.height / 2), self.radius)
 
-    def set_step(self, step: int) -> None:
-        self.step = step
+    def move(self, step: int) -> None:
+        self.step += step
 
     def update(self, *args: Any, **kwargs: Any) -> None:
         if self.step > 0:
             self.do_animate(kwargs["map"])
+
+    def cal_coordinate(self, shift):
+        if self.index <= 6:
+            return (self.x, self.y + 20 * shift)
+
+        elif self.index <= 13:
+            return (self.x + 20 * shift, self.y)
+    
+        elif self.index <= 20:
+            return (self.x, self.y - 20 * shift)
+
+        elif self.index <= 27:
+            return (self.x - 20 * shift, self.y)
 
     def do_animate(self, map):
         if self.step <= 0:
@@ -36,7 +49,7 @@ class charater(pygame.sprite.Sprite):
             if self.alpha <= 0:
                 self.alpha = 0
                 self.alpha_change = -self.alpha_change
-                self.move(map)
+                self.move_forward(map)
 
             self.screen.fill((255, 255, 255, 0))
             pygame.draw.circle(self.screen, (self.r, self.g, self.b, self.alpha), (self.width / 2, self.height / 2), self.radius)
@@ -49,7 +62,7 @@ class charater(pygame.sprite.Sprite):
             self.step -= 1
             return self.do_animate(self.step)
 
-    def move(self, map):
+    def move_forward(self, map):
         map[self.index] -= 1
         if self.index <= 6:
             self.y -= 100

@@ -57,7 +57,7 @@ class game:
 
                         if event.key == pygame.K_4:
                             self.game_map.change_current_team(4)
-                            
+
                     else:
                         if event.key == pygame.K_1:
                             self.game_map.update(step = 1)
@@ -83,6 +83,6 @@ class game:
                         if event.key == pygame.K_r:
                             self.reload()
 
-
+            self.clock.tick(60)
             pygame.display.update()
             await asyncio.sleep(0)

@@ -51,7 +51,7 @@ class map:
         self.render()
 
         if step > 0:
-            self.player.sprites()[self.current_team].set_step(step)
+            self.player.sprites()[self.current_team].move(step)
             
             self.current_team += 1
             if self.current_team >= 3:
@@ -68,4 +68,5 @@ class map:
                     if self.player.sprites()[i].index == self.player.sprites()[x].index:
                         if self.player.sprites()[i].seq < self.player.sprites()[x].seq:
                             shift += 1
-            self.map.blit(self.player.sprites()[i].screen, (self.player.sprites()[i].x + (20 * shift), self.player.sprites()[i].y))
+        
+            self.map.blit(self.player.sprites()[i].screen, self.player.sprites()[i].cal_coordinate(shift))
