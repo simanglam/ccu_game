@@ -55,7 +55,6 @@ class map:
 
         if step > 0:
             self.player.sprites()[self.current_team].move(step)
-            self.panel.update()
             self.current_team += 1
             if self.current_team >= 3:
                 self.current_team = 0

@@ -7,7 +7,7 @@ class panel:
         self.image = pygame.Surface((self.width, self.height))
         self.image.fill((209, 130, 81))
 
-        self.image_array = [pygame.image.load("./charater_image/ch1.png"), pygame.image.load("./charater_image/ch1.png"), pygame.image.load("./charater_image/ch1.png")]
+        self.image_array = [pygame.image.load("./charater_image/ch1.png"), pygame.image.load("./charater_image/ch2.png"), pygame.image.load("./charater_image/ch3.png")]
 
     def render(self, seq):
         self.image.fill((209, 130, 81, 255))
