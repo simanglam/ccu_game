@@ -1,5 +1,6 @@
 import pygame
 from .charater import charater
+from .panel import panel
 
 class map:
     def __init__(self) -> None:
@@ -24,6 +25,8 @@ class map:
         for i in range(0, 28):
             self.chunk[i] = 0
         self.chunk[0] = 3
+
+        self.panel = panel()
 
 
     def move(self, index, state):
@@ -52,13 +55,15 @@ class map:
 
         if step > 0:
             self.player.sprites()[self.current_team].move(step)
-            
+            self.panel.update()
             self.current_team += 1
             if self.current_team >= 3:
                 self.current_team = 0
 
     def render(self):
         self.map.blit(self.old_map, (0, 0))
+        self.panel.render(self.current_team)
+        self.map.blit(self.panel.image, (220, 220))
 
         for i in range(0, len(self.player.sprites())):
             self.player.sprites()[i].update(map = self.chunk, current = True if i == self.current_team else None)
