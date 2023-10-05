@@ -1,5 +1,5 @@
 import pygame
-from core.charater import charater
+from .charater import charater
 
 class map:
     def __init__(self) -> None:
@@ -59,14 +59,13 @@ class map:
 
     def render(self):
         self.map.blit(self.old_map, (0, 0))
-        self.player.update(map = self.chunk)
 
         for i in range(0, len(self.player.sprites())):
+            self.player.sprites()[i].update(map = self.chunk, current = True if i == self.current_team else None)
             shift = 0
             for x in range(i, len(self.player.sprites())):
                 if self.player.sprites()[i] != self.player.sprites()[x]:
                     if self.player.sprites()[i].index == self.player.sprites()[x].index:
                         if self.player.sprites()[i].seq < self.player.sprites()[x].seq:
                             shift += 1
-        
             self.map.blit(self.player.sprites()[i].screen, self.player.sprites()[i].cal_coordinate(shift))

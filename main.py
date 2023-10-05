@@ -2,8 +2,6 @@ from typing import Any
 import pygame
 import asyncio
 
-from pygame import Rect, draw
-from pygame.locals import *
 
 from core import game
 

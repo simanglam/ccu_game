@@ -23,8 +23,21 @@ class charater(pygame.sprite.Sprite):
 
     def move(self, step: int) -> None:
         self.step += step
+    
+    def render(self, current):
+        if current:
+            self.radius = 15
+            self.screen.fill((255, 255, 255, 0))
+            pygame.draw.circle(self.screen, (self.r, self.g, self.b, self.alpha), (self.width / 2, self.height / 2), self.radius)
+        else:
+            self.radius = 10
+            self.screen.fill((255, 255, 255, 0))
+            pygame.draw.circle(self.screen, (self.r, self.g, self.b, self.alpha), (self.width / 2, self.height / 2), self.radius)
+
+            
 
     def update(self, *args: Any, **kwargs: Any) -> None:
+        self.render(kwargs["current"])
         if self.step > 0:
             self.do_animate(kwargs["map"])
 
@@ -43,24 +56,25 @@ class charater(pygame.sprite.Sprite):
 
     def do_animate(self, map):
         if self.step <= 0:
-            return
-        self.alpha += self.alpha_change
-        if self.alpha < 255:
-            if self.alpha <= 0:
-                self.alpha = 0
-                self.alpha_change = -self.alpha_change
-                self.move_forward(map)
-
-            self.screen.fill((255, 255, 255, 0))
-            pygame.draw.circle(self.screen, (self.r, self.g, self.b, self.alpha), (self.width / 2, self.height / 2), self.radius)
-
+            pass
         else:
-            self.alpha = 255
-            self.alpha_change = -self.alpha_change
-            self.screen.fill((255, 255, 255, 0))
-            pygame.draw.circle(self.screen, (self.r, self.g, self.b, self.alpha), (self.width / 2, self.height / 2), self.radius) 
-            self.step -= 1
-            return self.do_animate(self.step)
+            self.alpha += self.alpha_change
+            if self.alpha < 255:
+                if self.alpha <= 0:
+                    self.alpha = 0
+                    self.alpha_change = -self.alpha_change
+                    self.move_forward(map)
+
+                self.screen.fill((255, 255, 255, 0))
+                pygame.draw.circle(self.screen, (self.r, self.g, self.b, self.alpha), (self.width / 2, self.height / 2), self.radius)
+
+            else:
+                self.alpha = 255
+                self.alpha_change = -self.alpha_change
+                self.screen.fill((255, 255, 255, 0))
+                pygame.draw.circle(self.screen, (self.r, self.g, self.b, self.alpha), (self.width / 2, self.height / 2), self.radius) 
+                self.step -= 1
+                return self.do_animate(self.step)
 
     def move_forward(self, map):
         map[self.index] -= 1
