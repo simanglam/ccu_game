@@ -78,17 +78,29 @@ class charater(pygame.sprite.Sprite):
 
     def move_forward(self, map):
         map[self.index] -= 1
-        if self.index <= 6:
-            self.y -= 100
+        if self.index <= 5:
+            self.y -= 108
 
+        elif self.index == 6:
+            self.y -= 40
+
+        elif self.index == 13:
+            self.x -= 40
+        
         elif self.index <= 13:
-            self.x -= 100
+            self.x -= 108
     
+        elif self.index == 20:
+            self.y += 40
+
         elif self.index <= 20:
-            self.y += 100
+            self.y += 108
+
+        elif self.index == 27:
+            self.x += 40
 
         elif self.index <= 27:
-            self.x += 100
+            self.x += 108
 
         self.index += 1
 
