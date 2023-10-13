@@ -9,8 +9,8 @@ class monitor:
         self.width, self.height = self.screen.get_size()
         self.image_array = [pygame.image.load("./charater_image/ch1.png"), pygame.image.load("./charater_image/ch2.png"), pygame.image.load("./charater_image/ch3.png")]
         self.image_array = [pygame.transform.scale(i, (400, 400)) for i in self.image_array]
-        self.font = pygame.font.Font(pygame.font.match_font("haranoajigothictw"), 60)
-        self.text = self.font.render("當前隊伍", 1, (0, 0, 0))
+        self.font = pygame.font.Font("Times New Roman.ttf", 60)
+        self.text = self.font.render("Current Team", 1, (0, 0, 0))
         self.text_rect = self.text.get_rect(center = (200, 450))
 
     def info(self, players: list) -> str:
