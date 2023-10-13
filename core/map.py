@@ -41,8 +41,8 @@ class map:
         else:
             return self.chunk[index]
 
-    def get_current_team(self) -> charater:
-        return self.player.sprites()[self.current_team]
+    def get_current_team(self) -> int:
+        return self.current_team
     
     def get_players(self) -> pygame.sprite.Group:
         return self.player
@@ -61,8 +61,8 @@ class map:
 
     def render(self):
         self.map.blit(self.old_map, (0, 0))
-        self.panel.render(self.current_team)
-        self.map.blit(self.panel.image, (220, 220))
+        #self.panel.render(self.current_team)
+        #self.map.blit(self.panel.image, (220, 220))
 
         for i in range(0, len(self.player.sprites())):
             self.player.sprites()[i].update(map = self.chunk, current = True if i == self.current_team else None)
