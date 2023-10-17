@@ -1,9 +1,10 @@
 import pygame
+import random
 from .charater import charater
 from .panel import panel
 
 class map:
-    def __init__(self) -> None:
+    def __init__(self, game) -> None:
         self.map = pygame.image.load("map.png")
         self.old_map = self.map.copy()
 
@@ -26,7 +27,11 @@ class map:
             self.chunk[i] = 0
         self.chunk[0] = 3
 
-        self.panel = panel()
+        self.panel = panel(self)
+
+    def roll(self):
+        self.animate = True
+        self.panel.roll()
 
 
     def move(self, index, state):
@@ -61,8 +66,6 @@ class map:
 
     def render(self):
         self.map.blit(self.old_map, (0, 0))
-        #self.panel.render(self.current_team)
-        #self.map.blit(self.panel.image, (220, 220))
 
         for i in range(0, len(self.player.sprites())):
             self.player.sprites()[i].update(map = self.chunk, current = True if i == self.current_team else None)
