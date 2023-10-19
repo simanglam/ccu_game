@@ -4,7 +4,7 @@ from .charater import charater
 from .panel import panel
 
 class map:
-    def __init__(self, game) -> None:
+    def __init__(self) -> None:
         self.map = pygame.image.load("map.png")
         self.old_map = self.map.copy()
 

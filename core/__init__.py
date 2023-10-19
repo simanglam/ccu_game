@@ -20,7 +20,7 @@ class game:
         self.panel = panel(self)
         self.animate = False
 
-        self.game_map = map(self)
+        self.game_map = map()
 
         self.monitor = monitor()
 
@@ -35,6 +35,7 @@ class game:
 
     async def run(self):
         while self.running:
+            keys = pygame.key.get_pressed()
             self.screen.blit(self.bg, (0, 0))
             self.game_map.render()
             self.monitor.update(self.game_map.get_current_team())
@@ -51,6 +52,9 @@ class game:
 
                 
                 if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                            self.running = False
+                        
                     if event.mod & pygame.KMOD_SHIFT:
                         if event.key == pygame.K_0:
                             self.game_map.change_current_team(0)
@@ -67,34 +71,10 @@ class game:
                         if event.key == pygame.K_4:
                             self.game_map.change_current_team(4)
 
-                    else:
-                        if event.key == pygame.K_1:
-                            self.game_map.update(step = 1)
-
-                        if event.key == pygame.K_2:
-                            self.game_map.update(step = 2)
-
-                        if event.key == pygame.K_3:
-                            self.game_map.update(step = 3)
-
-                        if event.key == pygame.K_4:
-                            self.game_map.update(step = 4)
-
-                        if event.key == pygame.K_5:
-                            self.game_map.update(step = 5)
-
-                        if event.key == pygame.K_6:
-                            self.game_map.update(step = 6)
-
-                        if event.key == pygame.K_ESCAPE:
-                            self.running = False
-
-                        if event.key == pygame.K_r:
-                            self.reload()
-
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    self.panel.roll()
-                    self.animate = True
+                    if keys[pygame.key.key_code('w')]:
+                        self.panel.roll()
+                        self.animate = True
 
             pygame.display.update()
             if self.panel.times == 1:
