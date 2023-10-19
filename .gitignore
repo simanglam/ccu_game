@@ -5,3 +5,6 @@ map.fls
 .DS_Store
 build/*
 build
+Dice/*.tex
+Dice/*.pdf
+

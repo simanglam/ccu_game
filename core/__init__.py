@@ -40,9 +40,9 @@ class game:
             self.monitor.update(self.game_map.get_current_team())
             self.screen.blit(self.game_map.map, ((self.width - self.game_map.width) / 2, (self.height - self.game_map.height) / 2))
             if self.animate:
-                target = random.randint(1, 4)
-                print(target, self.panel.times)
+                target = random.randint(1, 6)
                 self.panel.render(target)
+                pygame.time.delay(int(200 * (60 - self.panel.times) / 60))
                 self.screen.blit(self.panel.image, ((self.width - self.game_map.width) / 2 + 220, (self.height - self.game_map.height) / 2 + 220))
             self.screen.blit(self.monitor.screen, (0, 0))
             for event in pygame.event.get():
