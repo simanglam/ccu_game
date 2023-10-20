@@ -12,7 +12,7 @@ class game:
     def __init__(self) -> None:
         self.clock = pygame.time.Clock()
 
-        self.screen = pygame.display.set_mode((1920, 1080))
+        self.screen = pygame.display.set_mode((1920, 1080), FULLSCREEN)
         self.width, self.height = self.screen.get_size()
 
         self.bg = pygame.Surface(self.screen.get_size())
