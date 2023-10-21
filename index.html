@@ -1,14 +1,14 @@
 <html lang="en-us"><script src="https://pygame-web.github.io/archives/0.8/pythons.js" type=module id="site" data-python="cpython3.11" data-os="vtx,fs,snd,gui" async defer>#<!--
 
 print("""
-Loading ccu_game from ccu_game.apk
+Loading game from game.apk
     Pygbag Version : 0.8.3
     Template Version : 0.8.3
     Python  : 3.11
     CDN URL : https://pygame-web.github.io/archives/0.8/
     Screen  : {{cookiecutter.width}}x{{cookiecutter.height}}
-    Title   : ccu_game
-    Folder  : ccu_game
+    Title   : game
+    Folder  : game
     Authors : pgw
     SPDX-License-Identifier: cookiecutter.spdx
 
@@ -84,12 +84,12 @@ async def custom_site():
 
 
 
-    apk = "ccu_game.apk"
+    apk = "game.apk"
 
-    bundle = "ccu_game"
+    bundle = "game"
 
     # the C or js loader could do that but be explicit.
-    appdir = Path(f"/data/data/{bundle}") # /data/data/ccu_game
+    appdir = Path(f"/data/data/{bundle}") # /data/data/game
     appdir.mkdir()
 
 
@@ -239,7 +239,7 @@ config = {
     user_canvas_managed : 0,
     ume_block : 1,
     can_close : 0,
-    archive : "ccu_game",
+    archive : "game",
     gui_debug : 3,
     cdn : "https://pygame-web.github.io/archives/0.8/",
     autorun : 0,
@@ -248,7 +248,7 @@ config = {
 
 </script>
 
-    <title>ccu_game</title>
+    <title>game</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
