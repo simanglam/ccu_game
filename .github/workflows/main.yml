@@ -15,6 +15,7 @@ jobs:
     - name: Checkout
       run: |
             echo "Attempting to install pygbag"
+            cd game
             python -m pip install pygbag
             echo "Successfully installed pygbag"
             echo "Attempting to build the game"
