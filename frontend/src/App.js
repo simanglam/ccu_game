@@ -4,7 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
 
 function App() {
-  const BASEURL = "https://4b0d-2001-b400-e606-494e-3440-e668-928d-200d.ngrok-free.app"
+  const BASEURL = window.location.href
+
   const handleClick = () => {
     axios.post(BASEURL).then().then()
   }
