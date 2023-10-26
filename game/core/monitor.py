@@ -7,7 +7,7 @@ class monitor:
         self.screen = pygame.surface.Surface((400, 500))
         self.screen.fill((255,255,255))
         self.width, self.height = self.screen.get_size()
-        self.image_array = [pygame.image.load("./charater_image/ch1.png"), pygame.image.load("./charater_image/ch2.png"), pygame.image.load("./charater_image/ch3.png")]
+        self.image_array = [pygame.image.load("./charater_image/ch1.png"), pygame.image.load("./charater_image/ch2.png"), pygame.image.load("./charater_image/ch3.png"), pygame.image.load("./charater_image/ch4.png")]
         self.image_array = [pygame.transform.scale(i, (400, 400)) for i in self.image_array]
         self.font = pygame.font.Font("Times New Roman.ttf", 60)
         self.text = self.font.render("Current Team", 1, (0, 0, 0))

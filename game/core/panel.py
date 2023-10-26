@@ -20,7 +20,6 @@ class panel:
     def render(self, target):
         self.image.fill((255, 255, 255))
         self.image.blit(self.image_array[target - 1], (0, 0))
-        print(self.image.get_at((2, 2)))
 
         self.times -= 1
 

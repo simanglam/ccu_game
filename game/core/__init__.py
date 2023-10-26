@@ -1,5 +1,5 @@
 import pygame
-import asyncio, random
+import asyncio, random, requests, json
 
 from .panel import panel
 from .map import map
@@ -24,7 +24,7 @@ class game:
         self.game_map = map()
 
         self.monitor = monitor()
-        self.controller = ControllServer()
+        self.controller = ControllServer(self)
 
         self.running = True
         self.stop = False
@@ -57,13 +57,32 @@ class game:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                             self.running = False
+                    if event.key == pygame.K_1:
+                        self.game_map.update(1)
+                        requests.post("https://127.0.0.1:5000/set_current_team", json.dumps({"team": 1}))
+
+                    if event.key == pygame.K_2:
+                        self.game_map.update(2)
+                        requests.post("https://127.0.0.1:5000/set_current_team", json.dumps({"team": 2}))
+
+                    if event.key == pygame.K_3:
+                        self.game_map.update(3)
+                        requests.post("https://127.0.0.1:5000/set_current_team", json.dumps({"team": 3}))
+
+                    if event.key == pygame.K_4:
+                        self.game_map.update(4)
+                        requests.post("https://127.0.0.1:5000/set_current_team", json.dumps({"team": 4}))
+
+                    if event.key == pygame.K_5:
+                        self.game_map.update(5)
+
+                    if event.key == pygame.K_6:
+                        self.game_map.update(6)
                         
                     if event.mod & pygame.KMOD_SHIFT:
-                        if event.key == pygame.K_0:
-                            self.game_map.change_current_team(0)
-
                         if event.key == pygame.K_1:
                             self.game_map.change_current_team(1)
+
 
                         if event.key == pygame.K_2:
                             self.game_map.change_current_team(2)

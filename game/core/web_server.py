@@ -1,7 +1,7 @@
 from collections.abc import Callable
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-import os
+import requests
 from typing import Any
 
 class MyHttpHandlaer(BaseHTTPRequestHandler):
@@ -36,6 +36,7 @@ class MyHttpServer(HTTPServer):
 class ControllServer:
     def __init__(self):
         self.server = MyHttpServer(("127.0.0.1", 5000), MyHttpHandlaer)
+        requests.post("http://127.0.0.1:4000/reload")
 
     def update(self):
         self.server.handle_request()

@@ -18,10 +18,14 @@ class map:
         team1 = charater(0, (0, 0, 255))
         team2 = charater(1, (255, 0, 0))
         team3 = charater(2, (0, 255, 0))
+        team4 = charater(3, (0, 0, 0))
 
         self.player.add(team1)
         self.player.add(team2)
         self.player.add(team3)
+        self.player.add(team4)
+
+        self.team_length = len(self.player.sprites())
 
         for i in range(0, 28):
             self.chunk[i] = 0
@@ -53,7 +57,7 @@ class map:
         return self.player
     
     def change_current_team(self, new_team_index: int):
-        self.current_team = new_team_index
+        self.current_team = new_team_index - 1
 
     def update(self, step = 0):
         self.render()
@@ -61,7 +65,7 @@ class map:
         if step > 0:
             self.player.sprites()[self.current_team].move(step)
             self.current_team += 1
-            if self.current_team >= 3:
+            if self.current_team >= self.team_length - 1:
                 self.current_team = 0
 
     def render(self):
