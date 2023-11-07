@@ -36,7 +36,10 @@ class MyHttpServer(HTTPServer):
 class ControllServer:
     def __init__(self):
         self.server = MyHttpServer(("127.0.0.1", 5000), MyHttpHandlaer)
-        requests.post("http://127.0.0.1:4000/reload")
+        try:
+            requests.post("http://127.0.0.1:4000/reload")
+        except:
+            pass
 
     def update(self):
         self.server.handle_request()

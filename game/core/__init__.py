@@ -12,7 +12,7 @@ class game:
     def __init__(self) -> None:
         self.clock = pygame.time.Clock()
 
-        self.screen = pygame.display.set_mode((1920, 1080), FULLSCREEN)
+        self.screen = pygame.display.set_mode((1920, 1200))
         self.width, self.height = self.screen.get_size()
 
         self.bg = pygame.Surface(self.screen.get_size())
@@ -24,7 +24,7 @@ class game:
         self.game_map = map()
 
         self.monitor = monitor()
-        self.controller = ControllServer(self)
+        self.controller = ControllServer()
 
         self.running = True
         self.stop = False
@@ -54,44 +54,58 @@ class game:
                     self.running = False
 
                 
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                            self.running = False
-                    if event.key == pygame.K_1:
-                        self.game_map.update(1)
-                        requests.post("https://127.0.0.1:5000/set_current_team", json.dumps({"team": 1}))
-
-                    if event.key == pygame.K_2:
-                        self.game_map.update(2)
-                        requests.post("https://127.0.0.1:5000/set_current_team", json.dumps({"team": 2}))
-
-                    if event.key == pygame.K_3:
-                        self.game_map.update(3)
-                        requests.post("https://127.0.0.1:5000/set_current_team", json.dumps({"team": 3}))
-
-                    if event.key == pygame.K_4:
-                        self.game_map.update(4)
-                        requests.post("https://127.0.0.1:5000/set_current_team", json.dumps({"team": 4}))
-
-                    if event.key == pygame.K_5:
-                        self.game_map.update(5)
-
-                    if event.key == pygame.K_6:
-                        self.game_map.update(6)
-                        
+                elif event.type == pygame.KEYDOWN:
                     if event.mod & pygame.KMOD_SHIFT:
                         if event.key == pygame.K_1:
                             self.game_map.change_current_team(1)
-
+                            try:
+                                requests.post("http://127.0.0.1:4000/set_current_team", headers = {'Content-Type':'application/json'}, data = json.dumps({"team": 1}))
+                            except:
+                                pass
 
                         if event.key == pygame.K_2:
                             self.game_map.change_current_team(2)
+                            try:
+                                requests.post("http://127.0.0.1:4000/set_current_team", headers = {'Content-Type':'application/json'}, data = json.dumps({"team": 2}))
+                            except:
+                                pass
 
                         if event.key == pygame.K_3:
                             self.game_map.change_current_team(3)
+                            try:
+                                requests.post("http://127.0.0.1:4000/set_current_team", headers = {'Content-Type':'application/json'}, data = json.dumps({"team": 3}))
+                            except:
+                                pass
 
                         if event.key == pygame.K_4:
                             self.game_map.change_current_team(4)
+                            try:
+                                requests.post("http://127.0.0.1:4000/set_current_team", headers = {'Content-Type':'application/json'}, data = json.dumps({"team": 4}))
+                            except:
+                                pass
+                    else:
+                        if event.key == pygame.K_ESCAPE:
+                            self.running = False
+                        if event.key == pygame.K_1:
+                            self.game_map.update(1)
+
+                        if event.key == pygame.K_2:
+                            self.game_map.update(2)
+
+                        if event.key == pygame.K_3:
+                            self.game_map.update(3)
+
+                        if event.key == pygame.K_4:
+                            self.game_map.update(4)
+
+                        if event.key == pygame.K_5:
+                            self.game_map.update(5)
+
+                        if event.key == pygame.K_6:
+                            self.game_map.update(6)
+                        
+                        if event.key == pygame.K_f:
+                            pygame.display.toggle_fullscreen()
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if keys[pygame.key.key_code('w')]:
@@ -111,6 +125,10 @@ class game:
                 pygame.time.delay(1000)
                 self.stop = False
                 self.panel.times -= 1
+                try:
+                    requests.post("http://127.0.0.1:4000/set_current_team", headers = {'Content-Type':'application/json'}, data = json.dumps({"team": self.game_map.get_current_team() + 1}))
+                except:
+                    pass
 
 
             self.clock.tick(30)

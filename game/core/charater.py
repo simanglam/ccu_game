@@ -1,4 +1,6 @@
 import pygame
+import requests
+import json
 
 from typing import Any
 
@@ -23,6 +25,7 @@ class charater(pygame.sprite.Sprite):
 
     def move(self, step: int) -> None:
         self.step += step
+
     
     def render(self, current):
         if current:
