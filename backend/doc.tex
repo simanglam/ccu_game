@@ -1,0 +1,147 @@
+\documentclass[12pt]{NGPLB}
+\usepackage{xeCJK}
+\setCJKmainfont{PingFang TC}
+
+\usepackage{rest-api}
+
+\begin{document}
+
+\begin{apiRoute}{GET}{/states}{得到目前遊戲狀態}
+\begin{routeParameter}
+\noRouteParameter{no parameter}
+\end{routeParameter}
+\begin{routeResponse}{application/json}
+\begin{routeResponseItem}{200}{ok}
+\begin{routeResponseItemBody}
+{
+	"current\_team": 1
+	"team": [
+		{
+		"money": 3000,
+		"score": 0	
+		},
+		......
+	]
+}
+\end{routeResponseItemBody}
+\end{routeResponseItem}
+\end{routeResponse}
+\end{apiRoute}
+
+\begin{apiRoute}{GET}{/team/\{id\}}{得到該 Id 組別的狀態}
+\begin{routeParameter}
+\routeParamItem{Id}{組別編號}
+\end{routeParameter}
+\begin{routeResponse}{application/json}
+\begin{routeResponseItem}{200}{OK}
+\begin{routeResponseItemBody}
+{
+    "money": 3000,
+    "score": 0
+}
+\end{routeResponseItemBody}
+\end{routeResponseItem}
+
+\begin{routeResponseItem}{404}{Not Found}
+\begin{routeResponseItemBody}
+{
+    "message": "隊伍 5 不存在"
+}
+\end{routeResponseItemBody}
+\end{routeResponseItem}
+\end{routeResponse}
+\end{apiRoute}
+
+\begin{apiRoute}{POST}{/team/\{id\}/money}{更改該 Id 組別的金錢}
+\begin{routeParameter}
+\routeParamItem{Id}{組別編號}
+\end{routeParameter}
+\begin{routeRequest}{application/json}
+\begin{routeRequestBody}
+{
+	"money": 2000
+}
+\end{routeRequestBody}
+\end{routeRequest}
+\begin{routeResponse}{application/json}
+\begin{routeResponseItem}{200}{OK}
+\begin{routeResponseItemBody}
+{
+	"money": 2000
+}
+\end{routeResponseItemBody}
+\end{routeResponseItem}
+
+\begin{routeResponseItem}{404}{Not Found}
+\begin{routeResponseItemBody}
+{
+    "message": "隊伍 5 不存在"
+}
+\end{routeResponseItemBody}
+\end{routeResponseItem}
+\end{routeResponse}
+\end{apiRoute}
+
+\begin{apiRoute}{POST}{/team/\{id\}/score}{更改該 Id 組別的分數}
+\begin{routeParameter}
+\routeParamItem{Id}{組別編號}
+\end{routeParameter}
+\begin{routeRequest}{application/json}
+\begin{routeRequestBody}
+{
+	"score": 2000
+}
+\end{routeRequestBody}
+\end{routeRequest}
+\begin{routeResponse}{application/json}
+\begin{routeResponseItem}{200}{OK}
+\begin{routeResponseItemBody}
+{
+	"score": 2000
+}
+\end{routeResponseItemBody}
+\end{routeResponseItem}
+
+\begin{routeResponseItem}{404}{Not Found}
+\begin{routeResponseItemBody}
+{
+    "message": "隊伍 5 不存在"
+}
+\end{routeResponseItemBody}
+\end{routeResponseItem}
+\end{routeResponse}
+\end{apiRoute}
+
+\begin{apiRoute}{POST}{/roll}{擲骰}
+\begin{routeParameter}
+\noRouteParameter{no parameter}
+\end{routeParameter}
+\begin{routeRequest}{application/json}
+\begin{routeRequestBody}
+{
+	"team": 1
+}
+\end{routeRequestBody}
+\end{routeRequest}
+
+\begin{routeResponse}{application/json}
+\begin{routeResponseItem}{200}{OK}
+\begin{routeResponseItemBody}
+{
+	"state": "Ok",
+	"Description" : "Succeed"
+}
+\end{routeResponseItemBody}
+\end{routeResponseItem}
+
+\begin{routeResponseItem}{400}{Bad Request}
+\begin{routeResponseItemBody}
+{
+    "message" : "Not current team"
+}
+\end{routeResponseItemBody}
+\end{routeResponseItem}
+\end{routeResponse}
+
+\end{apiRoute}
+\end{document}
