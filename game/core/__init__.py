@@ -4,7 +4,6 @@ import asyncio, random, json
 from .panel import panel
 from .map import map
 from .monitor import monitor
-from .web_server import ControllServer
 from pygame.locals import *
 
 class game:
