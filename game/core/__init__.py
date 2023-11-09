@@ -58,31 +58,19 @@ class game:
                     if event.mod & pygame.KMOD_SHIFT:
                         if event.key == pygame.K_1:
                             self.game_map.change_current_team(1)
-                            try:
-                                requests.post("http://127.0.0.1:4000/set_current_team", headers = {'Content-Type':'application/json'}, data = json.dumps({"team": 1}))
-                            except:
-                                pass
+                            
 
                         if event.key == pygame.K_2:
                             self.game_map.change_current_team(2)
-                            try:
-                                requests.post("http://127.0.0.1:4000/set_current_team", headers = {'Content-Type':'application/json'}, data = json.dumps({"team": 2}))
-                            except:
-                                pass
+                            
 
                         if event.key == pygame.K_3:
                             self.game_map.change_current_team(3)
-                            try:
-                                requests.post("http://127.0.0.1:4000/set_current_team", headers = {'Content-Type':'application/json'}, data = json.dumps({"team": 3}))
-                            except:
-                                pass
+                            
 
                         if event.key == pygame.K_4:
                             self.game_map.change_current_team(4)
-                            try:
-                                requests.post("http://127.0.0.1:4000/set_current_team", headers = {'Content-Type':'application/json'}, data = json.dumps({"team": 4}))
-                            except:
-                                pass
+                            
                     else:
                         if event.key == pygame.K_ESCAPE:
                             self.running = False
