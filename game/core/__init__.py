@@ -1,5 +1,5 @@
 import pygame
-import asyncio, random, requests, json
+import asyncio, random, json
 
 from .panel import panel
 from .map import map
@@ -113,10 +113,6 @@ class game:
                 pygame.time.delay(1000)
                 self.stop = False
                 self.panel.times -= 1
-                try:
-                    requests.post("http://127.0.0.1:4000/set_current_team", headers = {'Content-Type':'application/json'}, data = json.dumps({"team": self.game_map.get_current_team() + 1}))
-                except:
-                    pass
 
 
             self.clock.tick(30)
