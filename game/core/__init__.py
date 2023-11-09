@@ -24,7 +24,6 @@ class game:
         self.game_map = map()
 
         self.monitor = monitor()
-        self.controller = ControllServer()
 
         self.running = True
         self.stop = False
@@ -41,7 +40,6 @@ class game:
             self.screen.blit(self.bg, (0, 0))
             self.game_map.render()
             self.monitor.update(self.game_map.get_current_team())
-            self.controller.update()
             self.screen.blit(self.game_map.map, ((self.width - self.game_map.width) / 2, (self.height - self.game_map.height) / 2))
             if self.animate:
                 target = random.randint(1, 6)
@@ -100,11 +98,6 @@ class game:
                         self.panel.roll()
                         self.animate = True
 
-            if self.controller.is_trigger():
-                self.panel.roll()
-                self.animate = True
-                print(self.controller.server.trigger)
-                self.controller.server.trigger = False
 
             pygame.display.update()
             if self.panel.times == 1:
