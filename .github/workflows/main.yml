@@ -16,8 +16,6 @@ jobs:
       run: |
             echo "Attempting to install pygbag"
             python -m pip install pygbag
-            python -m pip install requests
-            python -m pip install -r requirements.txt
             echo "Successfully installed pygbag"
             echo "Attempting to build the game"
             python -m pygbag --build $GITHUB_WORKSPACE/game/main.py

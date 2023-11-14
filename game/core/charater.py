@@ -1,4 +1,5 @@
 import pygame
+import requests
 import json
 
 from typing import Any
@@ -20,8 +21,7 @@ class charater(pygame.sprite.Sprite):
         self.seq = seq
         self.step: int = 0
         
-        #pygame.draw.circle(self.screen, (self.r, self.g, self.b, self.alpha), (self.width / 2, self.height / 2), self.radius)
-
+        pygame.draw.circle(self.screen, (self.r, self.g, self.b, self.alpha), (self.width / 2, self.height / 2), self.radius)
 
     def move(self, step: int) -> None:
         self.step += step

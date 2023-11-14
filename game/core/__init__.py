@@ -1,9 +1,10 @@
 import pygame
-import asyncio, random, json
+import asyncio, random, requests, json
 
 from .panel import panel
 from .map import map
 from .monitor import monitor
+from .web_server import ControllServer
 from pygame.locals import *
 
 class game:
@@ -23,6 +24,7 @@ class game:
         self.game_map = map()
 
         self.monitor = monitor()
+        self.controller = ControllServer()
 
         self.running = True
         self.stop = False
@@ -39,6 +41,7 @@ class game:
             self.screen.blit(self.bg, (0, 0))
             self.game_map.render()
             self.monitor.update(self.game_map.get_current_team())
+            self.controller.update()
             self.screen.blit(self.game_map.map, ((self.width - self.game_map.width) / 2, (self.height - self.game_map.height) / 2))
             if self.animate:
                 target = random.randint(1, 6)
@@ -55,19 +58,31 @@ class game:
                     if event.mod & pygame.KMOD_SHIFT:
                         if event.key == pygame.K_1:
                             self.game_map.change_current_team(1)
-                            
+                            try:
+                                requests.post("http://127.0.0.1:4000/set_current_team", headers = {'Content-Type':'application/json'}, data = json.dumps({"team": 1}))
+                            except:
+                                pass
 
                         if event.key == pygame.K_2:
                             self.game_map.change_current_team(2)
-                            
+                            try:
+                                requests.post("http://127.0.0.1:4000/set_current_team", headers = {'Content-Type':'application/json'}, data = json.dumps({"team": 2}))
+                            except:
+                                pass
 
                         if event.key == pygame.K_3:
                             self.game_map.change_current_team(3)
-                            
+                            try:
+                                requests.post("http://127.0.0.1:4000/set_current_team", headers = {'Content-Type':'application/json'}, data = json.dumps({"team": 3}))
+                            except:
+                                pass
 
                         if event.key == pygame.K_4:
                             self.game_map.change_current_team(4)
-                            
+                            try:
+                                requests.post("http://127.0.0.1:4000/set_current_team", headers = {'Content-Type':'application/json'}, data = json.dumps({"team": 4}))
+                            except:
+                                pass
                     else:
                         if event.key == pygame.K_ESCAPE:
                             self.running = False
@@ -97,6 +112,11 @@ class game:
                         self.panel.roll()
                         self.animate = True
 
+            if self.controller.is_trigger():
+                self.panel.roll()
+                self.animate = True
+                print(self.controller.server.trigger)
+                self.controller.server.trigger = False
 
             pygame.display.update()
             if self.panel.times == 1:
@@ -105,6 +125,10 @@ class game:
                 pygame.time.delay(1000)
                 self.stop = False
                 self.panel.times -= 1
+                try:
+                    requests.post("http://127.0.0.1:4000/set_current_team", headers = {'Content-Type':'application/json'}, data = json.dumps({"team": self.game_map.get_current_team() + 1}))
+                except:
+                    pass
 
 
             self.clock.tick(30)
