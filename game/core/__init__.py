@@ -86,6 +86,7 @@ class game:
                     else:
                         if event.key == pygame.K_ESCAPE:
                             self.running = False
+                            
                         if event.key == pygame.K_1:
                             self.game_map.update(1)
 

@@ -30,7 +30,20 @@ def get_index():
 @app.route('/reload', methods = ['POST'])
 def game_reload():
     game_states["current_team"] = 1
-    game_states["team_money"] = [3000, 3000, 3000, 3000]
+    game_states["team"] = [
+        {"score": 0,
+         "money": 3000
+        },
+        {"score": 0,
+         "money": 3000
+        },
+        {"score": 0,
+         "money": 3000
+        },
+        {"score": 0,
+         "money": 3000
+        },
+    ]
     return ''
 
 @app.route('/set_current_team', methods = ['POST'])
