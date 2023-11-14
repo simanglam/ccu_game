@@ -63,6 +63,7 @@ def set_team_money(team_id):
 def set_team_score(team_id):
     if not team_id > len(game_states["team"]) and team_id > 0:
         body = request.get_json()
+        print(body)
         game_states["team"][team_id - 1]["score"] = body["score"]
         return jsonify({"score": game_states["team"][team_id - 1]["score"]})
     else:
@@ -81,4 +82,4 @@ def roll():
         return Response(status = 400, response = json.dumps({"message" : "Not current team"}), content_type = "application/json")
 
 if __name__ == "__main__":
-    app.run('0.0.0.0', 4000, False, threaded = True)
+    app.run('0.0.0.0', 4000, True, threaded = True)
