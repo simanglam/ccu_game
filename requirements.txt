@@ -1,5 +1,16 @@
-distlib==0.3.7
-filelock==3.12.4
-platformdirs==3.11.0
-virtualenv==20.24.6
-wheel @ file:///opt/homebrew/Cellar/python%403.12/3.12.0/libexec/wheel-0.41.2-py3-none-any.whl#sha256=78d96cd4af1dba478ba60defeb048271977eec315912b78273611989471ec2f6
+aioconsole==0.6.2
+aiohttp==3.8.5
+aiosignal==1.3.1
+async-timeout==4.0.3
+attrs==23.1.0
+charset-normalizer==3.3.0
+frozenlist==1.4.0
+idna==3.4
+installer==0.7.0
+multidict==6.0.4
+packaging==23.1
+pygame==2.5.2
+pygbag==0.8.2
+pyparsing==3.1.1
+token-utils==0.1.8
+yarl==1.9.2

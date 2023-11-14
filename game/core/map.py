@@ -1,7 +1,6 @@
 import pygame
 import random
 import json
-import requests
 from .charater import charater
 from .panel import panel
 
@@ -70,7 +69,7 @@ class map:
             if self.current_team > self.team_length - 1:
                 self.current_team = 0
             try:
-                requests.post("http://127.0.0.1:4000/set_current_team", headers = {'Content-Type':'application/json'}, data = json.dumps({"team": self.current_team + 1}))
+                pass
             except:
                 pass
 
